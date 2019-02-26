@@ -43,12 +43,9 @@ class Sender:
     # Add the commitments together using multiplication.
     # *cm is the equivalent to variadic declaration.
     def add(self, *cm):
-        total = 1
-        for x in cm:
-            total *= x
+        # Multiply each value in tuple *cm.
+        return reduce((lambda x, y: x * y), cm) % self.Q
 
-        total = total % self.Q
-        return total
 
 class SenderTest(unittest.TestCase):
     # Test that we can create an instance of Sender with pre-determined
